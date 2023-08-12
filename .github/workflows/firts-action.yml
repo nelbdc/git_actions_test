@@ -1,0 +1,10 @@
+name: firts-worflow 
+on: workflow_dispatch
+jobs:
+  firts_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print greetings
+        run: echo "wello word"
+      - name: Print goodbye
+        run: echo "Bye"
