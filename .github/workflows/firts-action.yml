@@ -1,8 +1,9 @@
 name: firts-worflow 
 on: push
+# se puede configurar varios on de la siguiente forma [push,workflow_dispatch,...]
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-latest #obligatorio para todos los jobs que se creen
     steps:
       - name: Get code
         uses: actions/checkout@v3
@@ -16,6 +17,8 @@ jobs:
       - name: Run Test
         run: pytest
   deploy:
+    needs: test # para decirle que necesita que termine primero este antes de seguir la ejecucion de este
+    #para decirle que necesita de varios jobs se hace [test,test.,..]
     runs-on: ubuntu-latest
     steps:
       - name: Get code
