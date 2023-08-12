@@ -1,10 +1,20 @@
 name: firts-worflow 
-on: workflow_dispatch
+on: push
 jobs:
-  firts_job:
+  test:
     runs-on: ubuntu-latest
     steps:
-      - name: Print greetings
-        run: echo "wello word"
-      - name: Print goodbye
-        run: echo "Bye"
+      - name: Get code
+        uses: actions/checkout@v3
+      - name: Install python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: pip
+      - name: Install Dependencies
+        run: pip install -r requeriments.txt
+      - name: Run Test
+        run: pytest
+          
+
+
