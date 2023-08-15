@@ -1,6 +1,25 @@
+# todo se puede ver la en documentacion de git
+
 name: firts-worflow 
-on: push
-# se puede configurar varios on de la siguiente forma [push,workflow_dispatch,...]
+# on: push
+# # se puede configurar varios on de la siguiente forma [push,workflow_dispatch,...]
+on:
+  pull_request: 
+    types: 
+      - opened
+    branches: 
+      - main
+      - 'dev-*' # dev-new dev-this-is-new -> como se utilizan los slashes y los asteriscos
+      - 'feat/**' # feat/new feat/this/new -> nos permite realizar mas de un slash en la ruta de la rama
+  workflow_dispatch:
+  push:
+    branches: 
+      - main
+      - 'dev-*' # dev-new dev-this-is-new -> como se utilizan los slashes y los asteriscos
+      - 'feat/**' # feat/new feat/this/new -> nos permite realizar mas de un slash en la ruta de la rama
+    paths-ignore:
+      - '.github/workflows/*'
+# otra forma de hacer los on - es mas compleja pero permite especificar diferentes tipos mira el ejemplo de arriba
 jobs:
   fibonacci:
     runs-on: ubuntu-latest #obligatorio para todos los jobs que se creen
