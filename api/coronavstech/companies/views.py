@@ -52,6 +52,7 @@ def fibonacci_url_test(request):
         )
 
     number = int(number)
+    # this cases is ugly
     if number < 0:
         return Response(
             {"status": "failed", "info": "The number should be a digit more than 0"},
