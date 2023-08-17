@@ -17,8 +17,8 @@ on:
       - main
       - 'dev-*' # dev-new dev-this-is-new -> como se utilizan los slashes y los asteriscos
       - 'feat/**' # feat/new feat/this/new -> nos permite realizar mas de un slash en la ruta de la rama
-    paths-ignore:
-      - '.github/workflows/*'
+    # paths-ignore: #no hara los actions si vienen de alguna de estas rutas
+    #   - '.github/workflows/*'
 # otra forma de hacer los on - es mas compleja pero permite especificar diferentes tipos mira el ejemplo de arriba
 jobs:
   fibonacci:
@@ -35,7 +35,6 @@ jobs:
         run: pip install -r ./requirements.txt
       - name: Run Test
         run: pytest ./fibonacci
-  
   django-test:
     runs-on: ubuntu-latest
     needs: fibonacci
@@ -51,6 +50,13 @@ jobs:
         run: pip install -r ./requirements.txt
       - name: Run Test
         run: pytest ./api
+      - name: Uploads Artifact
+        uses: actions/upload-artifact@v3 # Averiguar mas sobre artifact
+        with:
+          name: api-files
+          path: | #para poder agarrar mas de una ruta 
+            api/coronavstech
+
       
   deploy:
     needs: [fibonacci,django-test] # para decirle que necesita que termine primero este antes de seguir la ejecucion de este
