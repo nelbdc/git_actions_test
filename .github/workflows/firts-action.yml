@@ -1,22 +1,22 @@
 # todo se puede ver la en documentacion de git
 
-name: firts-worflow 
+name: firts-worflow
 # on: push
 # # se puede configurar varios on de la siguiente forma [push,workflow_dispatch,...]
 on:
-  pull_request: 
-    types: 
+  pull_request:
+    types:
       - opened
-    branches: 
+    branches:
       - main
-      - 'dev-*' # dev-new dev-this-is-new -> como se utilizan los slashes y los asteriscos
-      - 'feat/**' # feat/new feat/this/new -> nos permite realizar mas de un slash en la ruta de la rama
+      - "dev-*" # dev-new dev-this-is-new -> como se utilizan los slashes y los asteriscos
+      - "feat/**" # feat/new feat/this/new -> nos permite realizar mas de un slash en la ruta de la rama
   workflow_dispatch:
   push:
-    branches: 
+    branches:
       - main
-      - 'dev-*' # dev-new dev-this-is-new -> como se utilizan los slashes y los asteriscos
-      - 'feat/**' # feat/new feat/this/new -> nos permite realizar mas de un slash en la ruta de la rama
+      - "dev-*" # dev-new dev-this-is-new -> como se utilizan los slashes y los asteriscos
+      - "feat/**" # feat/new feat/this/new -> nos permite realizar mas de un slash en la ruta de la rama
     # paths-ignore: #no hara los actions si vienen de alguna de estas rutas
     #   - '.github/workflows/*'
 # otra forma de hacer los on - es mas compleja pero permite especificar diferentes tipos mira el ejemplo de arriba
@@ -29,7 +29,7 @@ jobs:
       - name: Install python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
           cache: pip
       - name: Install Dependencies
         run: pip install -r ./requirements.txt
@@ -44,7 +44,7 @@ jobs:
       - name: Install Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
           cache: pip
       - name: Install Dependencies
         run: pip install -r ./requirements.txt
@@ -54,12 +54,11 @@ jobs:
         uses: actions/upload-artifact@v3 # Averiguar mas sobre artifact
         with:
           name: api-files
-          path: | #para poder agarrar mas de una ruta 
+          path: | #para poder agarrar mas de una ruta
             api/coronavstech
 
-      
   deploy:
-    needs: [fibonacci,django-test] # para decirle que necesita que termine primero este antes de seguir la ejecucion de este
+    needs: [fibonacci, django-test] # para decirle que necesita que termine primero este antes de seguir la ejecucion de este
     #para decirle que necesita de varios jobs se hace [test,test.,..]
     runs-on: ubuntu-latest
     steps:
@@ -68,10 +67,9 @@ jobs:
       - name: Install python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'
+          python-version: "3.10"
           cache: pip
       - name: Install Dependencies
         run: echo "instalando dependencia"
       - name: Deploying
         run: echo "deploy"
-
