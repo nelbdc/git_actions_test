@@ -17,8 +17,8 @@ on:
       - main
       - 'dev-*' # dev-new dev-this-is-new -> como se utilizan los slashes y los asteriscos
       - 'feat/**' # feat/new feat/this/new -> nos permite realizar mas de un slash en la ruta de la rama
-    paths-ignore:
-      - '.github/workflows/*'
+    # paths-ignore:
+    #   - '.github/workflows/*'
 # otra forma de hacer los on - es mas compleja pero permite especificar diferentes tipos mira el ejemplo de arriba
 jobs:
   fibonacci:
